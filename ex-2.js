@@ -1,15 +1,32 @@
-//Exercise #2: At Least Five Function
+let studentScoresRoom1 = [12, 40, 67, 80, 100, 15, 40, 78, 75, 80];
+let studentScoresRoom2 = [78, 98, 23, 15, 40, 12, 40, 67, 80, 100];
+let studentScoresRoom3 = [67, 80, 100, 15, 12, 40, 67, 80, 100, 67];
 
-function atLeastFive(array, operation) {
-  // Start coding here
-}
+function checkScore(score,criteria){
+    let count=0;
+    if (score>=criteria){
+        count = 1;
+    }
+    return count;
+};
 
-const studentScoresRoom1 = [90, 40, 67, 80, 100, 15, 86, 12, 99, 67];
-const studentScoresRoom2 = [78, 98, 23, 15, 40, 12, 40, 67, 80, 100];
-const studentScoresRoom3 = [67, 80, 100, 15, 12, 40, 67, 80, 100, 67];
+function processArray(callbackOperation,arr,number,roomNumber){
+    let result=[];
+    let sum=0;
+    for (i=0;i<arr.length;i++){
+        result.push(callbackOperation(arr[i],number));
+    }
+    for(let i=0;i<result.length;i++){
+        sum=sum+result[i];
+    }
 
-// Using `atLeastFive` function here
+    if(sum >=5){
+        return `นักเรียนห้องที่ ${roomNumber} ผ่านเกณฑ์`;
+    } else {
+        return `นักเรียนห้องที่ ${roomNumber} ไม่ผ่านเกณฑ์`; 
+    }
+};
 
-let scoreRoom1Result;
-let scoreRoom2Result;
-let scoreRoom3Result;
+console.log(processArray(checkScore,studentScoresRoom1,70,1))
+console.log(processArray(checkScore,studentScoresRoom2,70,2))
+console.log(processArray(checkScore,studentScoresRoom3,70,3))
